@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LDI GLOBAL CHURCH 주보 - 2026.05.24</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --ldi-blue: #2D5873;
+            --ldi-blue-light: #3E7292;
+            --ldi-brown: #9E6F53;
+            --ldi-gray: #E0E0E0;
+            --ldi-gray-light: #F5F5F5;
+            --ldi-accent: #E91E63;
+            --text-dark: #111111; /* 더 진하고 명확하게 수정 */
+            --text-main: #222222; /* 본문 텍스트 시인성 확보를 위해 어둡게 변경 */
+            --text-light: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'noto sans ko', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--ldi-gray-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+            letter-spacing: -0.02em;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--ldi-blue);
+            color: var(--text-light);
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 50px;
+        }
+
+        header h1 {
+            font-size: 19px; /* 조금 더 크게 */
+            margin: 0;
+            font-weight: 700; /* 헤더 타이틀 볼드 */
+        }
+
+        .header-icon {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* --- Global Menu --- */
+        #global-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 15px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+            width: 150px;
+        }
+
+        #global-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #global-menu li {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-weight: bold; /* 메뉴 글자 볼드 */
+        }
+
+        #global-menu li:last-child {
+            border-bottom: none;
+        }
+
+        #global-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+            color: var(--ldi-blue);
+        }
+
+        /* --- Admin Upload Bar --- */
+        #admin-upload-panel {
+            display: none;
+            background-color: #E2E8F0;
+            padding: 10px 15px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 1px solid #CBD5E0;
+        }
+
+        #admin-upload-panel input[type="file"] {
+            font-size: 12px;
+            flex: 1;
+            font-weight: bold;
+        }
+
+        #admin-upload-panel button {
+            background-color: var(--ldi-blue);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        #admin-upload-panel button:hover {
+            background-color: var(--ldi-blue-light);
+        }
+
+        /* --- Nav Tabs --- */
+        nav {
+            background-color: var(--ldi-blue-light);
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 14px; /* 인덱스 탭 크기 상향 */
+            cursor: pointer;
+            transition: color 0.3s;
+            position: relative;
+            font-weight: bold; /* 기본 탭 글자도 선명하게 볼드 처리 */
+        }
+
+        .nav-link.active {
+            color: var(--text-light);
+            font-weight: 800; /* 활성화 탭 강한 볼드 */
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--ldi-accent);
+        }
+
+        /* --- Logo Bar --- */
+        .logo-bar {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-bar img {
+            height: 30px;
+        }
+
+        /* --- Content Layout --- */
+        main {
+            padding: 15px;
+            padding-bottom: 60px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* --- Card and List Elements --- */
+        .card {
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 2px 2px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card-header {
+            background-color: var(--ldi-gray);
+            color: var(--ldi-brown);
+            padding: 12px 15px;
+            font-weight: 800; /* 헤더 대제목 강한 볼드 */
+            font-size: 15px; /* 크기 상향 */
+            border-bottom: 1px solid #dcdcdc;
+            position: relative;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10%;
+            height: 100%;
+            background-color: var(--ldi-brown);
+        }
+
+        .card-body {
+            padding: 15px;
+            font-size: 15px; /* 전체 본문 글씨 크게 변경 */
+            font-weight: bold; /* ★ 전체 본문 글자 가독성을 위해 볼드 처리 ★ */
+            line-height: 1.6;
+        }
+
+        /* --- Specific Content Styling --- */
+        .card-table-title {
+            text-align: center;
+            font-weight: 800;
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: var(--ldi-brown);
+        }
+
+        .worship-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px; /* 테이블 글씨 크기 확대 */
+            margin-bottom: 15px;
+        }
+
+        .worship-table th {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            color: #444;
+            font-weight: 800;
+        }
+
+        .worship-table td {
+            padding: 11px 8px;
+            border-bottom: 1px solid #eee;
+            color: var(--text-dark); /* 글자색을 완전 짙게 */
+        }
+
+        .worship-table td:last-child {
+            text-align: right;
+            color: #222;
+            font-weight: 800; /* 오른쪽 담당자 명단 강조 */
+        }
+
+        .table-note {
+            text-align: center;
+            font-size: 13px; /* 안내 문구 확대 */
+            color: #222;
+            background-color: var(--ldi-gray); /* 색상 반전으로 가독성 확보 */
+            padding: 6px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .sermon-info {
+            background-color: #fcfcfc;
+            border: 1px solid #eee;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .sermon-info p {
+            margin: 5px 0;
+            font-size: 13px;
+        }
+
+        .news-item {
+            margin-bottom: 15px;
+        }
+
+        .news-item-title {
+            font-weight: 800;
+            color: var(--ldi-brown);
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        .list-unstyled {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .list-unstyled li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 6px;
+        }
+
+        .list-unstyled li::before {
+            content: '*';
+            position: absolute;
+            left: 0;
+            color: var(--ldi-accent); /* 별표를 강조색으로 변경하여 구분을 명확히 함 */
+            font-weight: 800;
+        }
+
+        .account-details p {
+            margin: 6px 0;
+            font-size: 14px; /* 계좌번호 시인성 상향 */
+            color: #000; /* 계좌번호 완전 검은색 */
+        }
+
+        .account-details span {
+            color: var(--ldi-brown);
+            font-weight: 800;
+        }
+
+        .sermon-preview {
+            display: flex;
+            align-items: flex-start;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 15px;
+        }
+
+        .sermon-preview-img {
+            flex-shrink: 0;
+            width: 60px;
+            margin-right: 15px;
+        }
+
+        .sermon-preview-text h3 {
+            margin: 0 0 5px 0;
+            font-size: 15px;
+            color: var(--ldi-blue);
+            font-weight: 800;
+        }
+
+        .sermon-preview-text p {
+            margin: 0;
+            font-size: 13px;
+            color: #424242;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--ldi-blue);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 11px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: bold;
+        }
+
+        /* --- Utilities --- */
+        .text-center { text-align: center; }
+        .text-bold { font-weight: 800; }
+        .m-b-10 { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <i class="header-icon fas fa-bars" id="menu-toggle"></i>
+    <h1>2026.05.24 주보</h1>
+    <i class="header-icon fas fa-ellipsis-v" id="more-toggle"></i>
+    <div id="global-menu">
+        <ul>
+            <li><i class="fas fa-home"></i> 홈</li>
+            <li id="menu-upload-btn"><i class="fas fa-upload"></i> 주보 업로드</li>
+            <li><i class="fas fa-bookmark"></i> 이전 주보</li>
+            <li><i class="fas fa-share-alt"></i> 공유하기</li>
+        </ul>
+    </div>
+</header>
+
+<div id="admin-upload-panel">
+    <input type="file" id="hwpFile" accept=".hwp,.hwpx,.HWP,.HWPX">
+    <button onclick="uploadJuboFile()">주보 업데이트</button>
+</div>
+
+<nav>
+    <div class="nav-link active" onclick="showTab('tab1', this)">예배순서</div>
+    <div class="nav-link" onclick="showTab('tab2', this)">교회소식</div>
+    <div class="nav-link" onclick="showTab('tab3', this)">기도제목</div>
+    <div class="nav-link" onclick="showTab('tab4', this)">섬김이</div>
+    <div class="nav-link" onclick="showTab('tab5', this)">헌금계좌</div>
+    <div class="nav-link" onclick="showTab('tab6', this)">주일설교</div>
+</nav>
+
+<div class="logo-bar">
+    <img src="https://i.ibb.co/Lkhm7Cg/LDI-Logo.png" alt="LDI GLOBAL CHURCH LOGO">
+</div>
+
+<main>
+    <div class="tab-content active" id="tab1">
+        <div class="table-note text-center m-b-10 text-bold">10:50~</div>
+        <div class="table-note m-b-10">*표는 일어서 주세오</div>
+        <div class="card">
+            <div class="card-body">
+                <table class="worship-table">
+                    <tr>
+                        <td>예배를 위한 기도</td>
+                        <td>사회자</td>
+                    </tr>
+                    <tr>
+                        <td>다함께 찬양</td>
+                        <td>김재웅 집사</td>
+                    </tr>
+                    <tr>
+                        <td>대표기도</td>
+                        <td>김민선 집사</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center text-bold">사도신경</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center text-bold">새 교우 환영</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center text-bold">감사와 은혜 나눔</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center text-bold">광고 및 합심기도</td>
+                    </tr>
+                    <tr>
+                        <td>성경봉독 및 설교</td>
+                        <td>임경철 목사</td>
+                    </tr>
+                    <tr class="text-bold">
+                        <td colspan="2" class="text-center">본문: 눅 11:5-13</td>
+                    </tr>
+                    <tr class="text-bold">
+                        <td colspan="2" class="text-center">제목: 구하라 그리하면 너희에게 주실것이요!</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center text-bold">헌금</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center text-bold">*주기도문 찬송</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center text-bold">*축도</td>
+                    </tr>
+                    <tr>
+                        <td>임경철 목사</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center text-bold">※표는 일어서 주세요</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab2">
+        <div class="card">
+            <div class="card-header">1. 소그룹 성경공부 기도회</div>
+            <div class="card-body">
+                오늘 소그룹 성경공부 후, 소그룹 기도회가 있습니다. 모두 참여하여 응답받는 기도의 기쁨을 누리시기를 축복합니다.
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">2. 결혼예배 일정안내</div>
+            <div class="card-body">
+                * 김영진 집사, 서다미 집사 결혼예배<br>
+                * 일시: 5월 25일(월) 11시<br>
+                * 장소: 한국기독교연합회관(서울 종로구 김상옥로 30)
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">3. 제37회 LDI금식수련회 일정 안내</div>
+            <div class="card-body">
+                * 일시: 2026년 7월 9일(목) ~ 7월 11일(토)<br>
+                * 장소: 광림수도원<br>
+                * 주제: 민족과 세계 복음화를 위한 성령충만과 부흥을 주옵소서!(엡 5:18)<br>
+                * 할인등록기간: 6월 13일(토)-6월27(토)<br>
+                * 할인등록금: 6만원(신규4만원), 해외거주 4만원
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">4. 명문가를 꿈꾸는 땅 6-3학기 등록안내</div>
+            <div class="card-body">
+                * 개강일: 26년 6월 18일(목)<br>
+                * 할인등록: 26년 5월 9일~6월 7일<br>
+                * 등록: 카카오톡 공지사항 확인<br>
+                * 문의: 유훈식 집사
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">5. 2026년 국내외 캠퍼스 선교프로젝트 후원요청</div>
+            <div class="card-body">
+                * 2026년도 8월초 예정인 일본단기선교 위해서 사역비, 항공료, 숙박비, 식비, 등 많은 비용이 필요합니다. 그리고 국내 캠퍼스 전도, 부스전도, 전도지 제작, 떡볶이, 커피차 전도 등을 위해 기도해 주시고 기쁜 마음으로 자원 하여 후원해 주시면 큰 축복이 될 줄 믿습니다!<br>
+                * 후원계좌: 신한은행 100-038-353684 사단법인글로벌리더십개발원
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">6. LDI센터 CITY빌딩을 위한 기도</div>
+            <div class="card-body">
+                LDI센터 CITY빌딩을 교통의 요지에 “속히” 주시도록 기도합시다!
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab3">
+        <div class="card">
+            <div class="card-header">1. 비전의 약속의 말씀</div>
+            <div class="card-body">
+                [LDI와 LDI Global Church 비전의 약속의 말씀]<br><br>
+                시 81:10 “네 입을 넓게(크게) 열라 내가 채우리라”<br>
+                시 2:8 “내게 구하라 내가 열방을 유업으로 주리니 네 소유가 땅 끝까지 이르리로다”<br><br>
+                민족복음화와 세계복음화(마28:19,-20)를 위한:<br>
+                [캠퍼스 비전]<br>
+                국내 100개 대학에 각 7,000명의 LDI 제자공동체<br>
+                국외 30,000개 대학에 각 7,000명의 LDI 제자공동체<br><br>
+                [개척교회 비전]<br>
+                국내외에 10만개 제자삼는 도시형 선교교회공동체를 개척
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab4">
+        <div class="card">
+            <div class="card-header">* 섬김이명단</div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li>이번주</li>
+                    <li>*찬양인도:김재웅</li>
+                    <li>*예배인도:조남현</li>
+                    <li>*예배기도:김민선</li>
+                    <li>*설교요약:민소연</li>
+                    <li>*배식:김영상</li>
+                    <li>*주방섬김:장가리, 민소연</li>
+                </ul>
+                <br>
+                <ul class="list-unstyled">
+                    <li>다음주</li>
+                    <li>*찬양인도:조남현</li>
+                    <li>*예배인도:장경완</li>
+                    <li>*예배기도:김민아</li>
+                    <li>*설교요약:박지연</li>
+                    <li>*배식:유훈식, 유경태</li>
+                    <li>*주방섬김:김라면, 김민아</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">교회 임직자</div>
+            <div class="card-body">
+                담임목사 임경철박사<br>
+                협동교수선교사 박혜원박사
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab5">
+        <div class="card account-details">
+            <div class="card-header">헌금계좌</div>
+            <div class="card-body">
+                <p><span>(사단법인)글로벌리더십개발원 헌금계좌/ LDI겨자씨후원 :</span></p>
+                <p>국민은행 97551700466 (사)글로벌리더십개발원</p>
+                <p>신한은행 100-030-127830 사단법인글로벌리더십개발원</p>
+                <p>우체국 013540-02-084347 글로벌리더십개발원</p>
+                <p>신한은행 100-032-707650 MK하우스(비전홈) 프로젝트</p>
+                <p>신한은행 100-034-664392 LDI대안학교 프로젝트</p>
+                <p>신한은행 100-035-724376 아프리카우물사역헌금</p>
+                <p>신한은행 100-036-186700 사단법인글로벌리더십(식사헌금)</p>
+                <p>SC제일은행 25620120627(예금주:김보영) 바나바(성도섬김)헌금</p>
+                <br>
+                <p class="text-bold text-center">“각각 그 마음에 정한대로 할 것이요 인색함으로나 억지로 하지말지니 하나님은 즐겨 내는 자를 사랑하시느니라!”</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab6">
+        <div class="sermon-preview">
+            <img src="https://i.ibb.co/wCx3wX0/Sermon-Icon.png" alt="Sermon Icon" class="sermon-preview-img">
+            <div class="sermon-preview-text">
+                <h3>텍스트설교</h3>
+                <p>지난주일 텍스트방식 요약설교입니다.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    &copy; 2026 LDI GLOBAL CHURCH. All rights reserved.
+</footer>
+
+<script>
+    // 메뉴/모어 토글
+    document.getElementById('menu-toggle').addEventListener('click', () => alert('메뉴 열기'));
+    document.getElementById('more-toggle').addEventListener('click', () => {
+        const menu = document.getElementById('global-menu');
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // 메뉴 내의 '주보 업로드' 버튼을 누르면 업로드 패널이 토글됨
+    document.getElementById('menu-upload-btn').addEventListener('click', () => {
+        const uploadPanel = document.getElementById('admin-upload-panel');
+        uploadPanel.style.display = uploadPanel.style.display === 'flex' ? 'none' : 'flex';
+        document.getElementById('global-menu').style.display = 'none';
+    });
+
+    // 탭 전환 기능
+    function showTab(tabId, el) {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.classList.remove('active'));
+
+        const links = document.querySelectorAll('.nav-link');
+        links.forEach(link => link.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        el.classList.add('active');
+
+        document.getElementById('global-menu').style.display = 'none';
+    }
+
+    // 주보 업로드 액션 (FastAPI 연동용 스켈레톤 함수)
+    async function uploadJuboFile() {
+        const fileInput = document.getElementById('hwpFile');
+        if (fileInput.files.length === 0) {
+            alert("업데이트할 한글 파일(.hwp / .hwpx)을 먼저 선택해주세요.");
+            return;
+        }
+        
+        const formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+
+        try {
+            const response = await fetch('http://localhost:8000/upload-jubo', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            
+            if(result.success) {
+                alert("주보가 성공적으로 업데이트되었습니다!");
+                location.reload();
+            } else {
+                alert("업데이트 실패: " + result.message);
+            }
+        } catch (error) {
+            alert("서버 통신에 실패했습니다. 백엔드 주소를 확인하세요.");
+        }
+    }
+</script>
+
+</body>
+</html>
